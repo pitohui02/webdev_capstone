@@ -10,8 +10,14 @@ export default {
         'loginBg': "url('./assets/login-bg.png')",
         'signupBg': "url('./assets/signup-page.jpg')",
       },
-      backgroundColor:{
-        'black': "#000000",
+      colors:{
+        white: "#FFFFFF",
+        black: "#000000",
+        primary: "#fca5a5",
+        secondary: "#262626",
+        accent: "#FFAF8A",
+        yellow: "FFFF00"
+        
       }
     },
   },
