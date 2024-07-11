@@ -1,36 +1,41 @@
 import { Link } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+
 
 export default function LoginPage() {
     return (
-        <main className = "bg-loginBg bg-cover bg-center bg-no-repeat">
-            <div className="w-full h-screen flex justify-center items-center bg-black bg-opacity-50">
-                <div className = "bg-white w-full max-w-md rounded-xl bg-opacity-100 shadow-lg shadow-black">
-                <h1 className = "text-center text-black font-light text-4xl rounded-t-xl my-10 py-4 font-bold">
-                    OnlyImages
-                    </h1>
-                <form className = "p-6 mt-10">
-                    <label className="font-bold">Username</label>
-                    <input type="text" name ="" placeholder = "Username" className = "rounded-full pl-4 py-2 px-3 bg-secondary w-full text-black text-lg font-light outline-none bg-opacity-20"/>
-                    <label className="font-bold">Password</label>
-                    <input type="password" name ="" placeholder = "Password" className = "rounded-full pl-4 py-2 px-3 bg-secondary w-full text-black text-lg font-light outline-none bg-opacity-20"/>
-                    <label className ="flex items-center space-x-2 my-5 mb-20">
-                    <input type="checkbox" className="form-checkbox h-5 w-5 text-primary"/>
-                    <span className="text-black">Remember me</span>
-                     </label>
-                    <div className="flex flex-col items-center space-y-4">
-                    <button type="submit" className="my-5 items-center rounded-lg bg-primary text-black font-medium py-2 px-8 transition hover:text-white font-bold">
-                    Log in
-                    </button>
-                    <a href="" className="items-center text-black cursor-pointer transition hover:text-primary text-decoration-line: underline">
-                    Forgot Password
-                    </a>
-                    <Link to="/register" className="items-center text-primary cursor-pointer transition hover:text-black text-decoration-line: underline font-bold">
-                                Create an Account
-                            </Link>
-                    </div>
-                </form>
-                </div>
+       <>
+        <div className="bg-signupBg grid place-items-center h-screen no-repeat bg-cover">
+            <div className="flex-col justify-items-center bg-white min-w-[582px] min-h-[776px] rounded-md p-8">
+                <h1 className="uppercase text-[35px] text-center font-mono font-medium">onlyimages</h1>
+                    
+                    <form className="grid gap-y-4 justify-items-center items-center w-auto">
+                        
+                        <div className="flex-row justify-items-start">
+                            <Label htmlFor="loginEmail" className= "text-lg">Username</Label>
+                            <Input id="loginUsername" placeholder="Username" className="rounded-full min-w-[300px]"/>
+                        </div>
+
+                        <div className="flex-row justify-items-start">
+                            <Label htmlFor="passwordEmail" className= "text-lg">Password</Label>
+                            <Input id="passwordEmail" type="password" placeholder="Password" className="rounded-full min-w-[300px]"/>
+                        </div>
+
+                        <Button variant="outline" className="bg-[#FFAF8A] min-w-[300px] rounded-full hover:bg-[#F88D5B] ">Login</Button>
+                    </form>
+
+                    
+                    
+
+                <div className=""></div>
             </div>
-        </main>
+
+
+        </div>
+
+
+       </>
     );
 }
