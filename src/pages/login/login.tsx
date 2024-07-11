@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function LoginPage() {
     return (
         <main className = "bg-loginBg bg-cover bg-center bg-no-repeat">
@@ -22,9 +24,9 @@ export default function LoginPage() {
                     <a href="" className="items-center text-black cursor-pointer transition hover:text-primary text-decoration-line: underline">
                     Forgot Password
                     </a>
-                    <a href="" className="items-center text-primary cursor-pointer transition hover:text-black text-decoration-line: underline font-bold">
-                    Create an Account
-                    </a>
+                    <Link to="/register" className="items-center text-primary cursor-pointer transition hover:text-black text-decoration-line: underline font-bold">
+                                Create an Account
+                            </Link>
                     </div>
                 </form>
                 </div>

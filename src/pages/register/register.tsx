@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function SignUpPage() {
     return (
         <main className = "bg-signupBg bg-cover bg-center bg-no-repeat">
@@ -25,9 +27,9 @@ export default function SignUpPage() {
                     <button type="submit" className="my-5 items-center rounded-lg bg-primary text-black font-medium py-2 px-8 transition hover:text-white font-bold">
                     Sign Up
                     </button>
-                    <a href="#" className="items-center text-black cursor-pointer transition hover:text-primary text-decoration-line: underline font-bold">
+                    <Link to="/" className="items-center text-black cursor-pointer transition hover:text-primary text-decoration-line: underline font-bold">
                     Log In
-                    </a>
+                    </Link>
                     </div>
                 </form>
                 </div>
