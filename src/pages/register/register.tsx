@@ -13,9 +13,7 @@ export default function SignUpPage() {
                         <h1 className="uppercase text-[35px] text-center font-mono font-medium">onlyimages</h1>
                         
                         <form className="flex flex-col space-y-4 w-fit">
-
-                            
-                            
+     
                             <div className="flex-row justify-items-start">
                                 <Label htmlFor="regUsername" className= "text-lg">Username</Label>
                                 <Input id="regUsername" placeholder="Username" className="rounded-full min-w-[300px]"/>
@@ -47,7 +45,7 @@ export default function SignUpPage() {
 
                         <div className="flex flex-row space-x-1 items-center mt-[20px]">
                             
-                            <p>Already have an account?</p> <Link to="/" className="text-sm text-[#FFAF8A] underline">Login</Link>
+                            <p>Already have an account?</p> <Link to="/login" className="text-sm text-[#FFAF8A] underline">Login</Link>
                         </div>
                     </div>
                 </div>
