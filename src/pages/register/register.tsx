@@ -1,39 +1,57 @@
 import { Link } from "react-router-dom";
+import { Button } from "../../@/components/ui/button";
+import { Input } from "../../@/components/ui/input";
+import { Label } from "../../@/components/ui/label";
+import { Checkbox } from "../../@/components/ui/checkbox";
 
 export default function SignUpPage() {
     return (
-        <main className = "bg-signupBg bg-cover bg-center bg-no-repeat">
-            <div className="w-full h-screen flex justify-center items-center bg-black bg-opacity-50">
-                <div className = "bg-white w-full max-w-md rounded-xl bg-opacity-100 shadow-lg shadow-black">
-                <h1 className = "text-center text-black font-light text-4xl rounded-t-xl my-10 py-4 font-bold">
-                    OnlyImages
-                    </h1>
-                <form className = "p-6 mt-10">
-                    <label className="font-bold">Username</label>
-                    <input type="text" name ="" placeholder = "Username" className = "rounded-full pl-4 py-2 px-3 bg-secondary w-full text-black text-lg font-light outline-none bg-opacity-20"/>
-                    <label className="font-bold">Email Address</label>
-                    <input type="email" name ="" placeholder = "Username" className = "rounded-full pl-4 py-2 px-3 bg-secondary w-full text-black text-lg font-light outline-none bg-opacity-20"/>
-                    <label className="font-bold">Password</label>
-                    <input type="password" name ="" placeholder = "Password" className = "rounded-full pl-4 py-2 px-3 bg-secondary w-full text-black text-lg font-light outline-none bg-opacity-20"/>
-                    <label className="font-bold">Confirm Password</label>
-                    <input type="password" name ="" placeholder = "Confirm Password" className = "rounded-full pl-4 py-2 px-3 bg-secondary w-full text-black text-lg font-light outline-none bg-opacity-20"/>
-                    <div className="flex justify-center mt-5">
-                    <label className="flex space-x-1 my-5 mb-20 items-center">
-                    <input type="checkbox" className="form-checkbox h-5 w-5 text-primary"/>
-                    <span className="text-black">I agree to the </span><span className="text-primary text-decoration-line: underline">Terms and Privacy Policy</span>
-                    </label>
+        <>
+           <div className="bg-loginBg grid place-items-center h-screen no-repeat bg-cover">
+                <div className="w-full h-screen flex justify-center items-center bg-black bg-opacity-50">
+                    <div className="flex flex-col justify-center items-center space-y-6 bg-white min-w-[450px] min-h-[450px] rounded-[24px] p-8 shadow-lg shadow-black">
+                        <h1 className="uppercase text-[35px] text-center font-mono font-medium">onlyimages</h1>
+                        
+                        <form className="flex flex-col space-y-4 w-fit">
+
+                            
+                            
+                            <div className="flex-row justify-items-start">
+                                <Label htmlFor="regUsername" className= "text-lg">Username</Label>
+                                <Input id="regUsername" placeholder="Username" className="rounded-full min-w-[300px]"/>
+                            </div>
+
+                            <div className="flex-row justify-items-start">
+                                <Label htmlFor="regEmail" className= "text-lg">Email</Label>
+                                <Input type="email" id="regEmail" placeholder="Email" className="rounded-full min-w-[300px]"/>
+                            </div>
+
+                            <div className="flex-row justify-items-start">
+                                <Label htmlFor="regPW" className= "text-lg">Password</Label>
+                                <Input id="regPW" type="password" placeholder="Password" className="rounded-full min-w-[300px]"/>
+                            </div>
+
+                            <div className="flex-row justify-items-start">
+                                <Label htmlFor="regCPW" className= "text-lg">Confirm Password</Label>
+                                <Input id="regCPW" type="password" placeholder="Confirm Password" className="rounded-full min-w-[300px]"/>
+                            </div>
+
+
+                            <div className="flex flex-row space-x-1.5 items-center">
+                                <Checkbox id="tac"/>
+                                <Label htmlFor="tac">Accept Terms & Conditions</Label>
+                            </div>
+
+                            <Button variant="outline" className="bg-[#FFAF8A] min-w-[300px] rounded-lg hover:bg-[#F88D5B] duration-500 ">Register</Button>
+                        </form>
+
+                        <div className="flex flex-row space-x-1 items-center mt-[20px]">
+                            
+                            <p>Already have an account?</p> <Link to="/" className="text-sm text-[#FFAF8A] underline">Login</Link>
+                        </div>
                     </div>
-                    <div className="flex flex-col items-center space-y-4">
-                    <button type="submit" className="my-5 items-center rounded-lg bg-primary text-black font-medium py-2 px-8 transition hover:text-white font-bold">
-                    Sign Up
-                    </button>
-                    <Link to="/" className="items-center text-black cursor-pointer transition hover:text-primary text-decoration-line: underline font-bold">
-                    Log In
-                    </Link>
-                    </div>
-                </form>
                 </div>
-            </div>
-        </main>
+            </div> 
+        </>
     );
 }

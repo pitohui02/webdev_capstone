@@ -11,7 +11,7 @@ export default function LoginPage() {
        <>
         <div className="bg-signupBg grid place-items-center h-screen no-repeat bg-cover">
             <div className="w-full h-screen flex justify-center items-center bg-black bg-opacity-50">
-                <div className="flex flex-col justify-center items-center space-y-6 bg-white min-w-[450px] min-h-[450px] rounded-[24px] p-8">
+                <div className="flex flex-col justify-center items-center space-y-6 bg-white min-w-[450px] min-h-[450px] rounded-[24px] p-8 shadow-lg shadow-black">
                     <h1 className="uppercase text-[35px] text-center font-mono font-medium">onlyimages</h1>
                         
                         <form className="flex flex-col space-y-4 w-fit">
@@ -40,8 +40,6 @@ export default function LoginPage() {
                         </div>
                 </div>
             </div>
-
-
         </div>
 
 
