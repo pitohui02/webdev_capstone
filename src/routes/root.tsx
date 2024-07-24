@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import NavMenu from "../components/NavMenu";
 import HomePage from "../pages/Home/HomePage";
+import SignUpPage from "../pages/register/register";
+import LoginPage from "../pages/login/login";
 
 export default function Root() {
 	return (
@@ -15,6 +17,8 @@ export default function Root() {
 					path="/illustrations"
 					element={<div>This is the illustrations page</div>}
 				/>
+				<Route path ="/register" element={<SignUpPage />} />
+				<Route path ="/login" element={<LoginPage />} />
 			</Routes>
 		</>
 	);

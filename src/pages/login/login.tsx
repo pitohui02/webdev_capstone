@@ -1,17 +1,13 @@
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-  } from "../../@/components/ui/dialog"
-  
-import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import { Input } from "../../@/components/ui/input";
 import { Label } from "../../@/components/ui/label";
 import { Button } from "../../@/components/ui//button";
 import { Checkbox } from "../../@/components/ui/checkbox";
+import ForgotPasswordDialog from "../../components/ForgotPasswordModal";
+
 
 export default function LoginPage() {
+
 	return (
 		<>
 			<div className="bg-signupBg grid place-items-center h-screen no-repeat bg-cover">
@@ -59,9 +55,7 @@ export default function LoginPage() {
 						</form>
 
 						<div className="flex flex-col space-y-2 items-center mt-[20px]">
-							<Link to="/forgot_password" className="text-sm">
-								Forgot Password
-							</Link>
+                            <ForgotPasswordDialog/>
 							<Link to="/register" className="text-sm text-[#FFAF8A] underline">
 								Create a New Account
 							</Link>
