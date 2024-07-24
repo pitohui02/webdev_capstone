@@ -10,10 +10,8 @@ import { Input } from "../../@/components/ui/input";
 import { Label } from "../../@/components/ui/label";
 import { Button } from "../../@/components/ui//button";
 import { Checkbox } from "../../@/components/ui/checkbox";
-import { GearIcon } from "@radix-ui/react-icons"
 
 import Dropzone from '../../@/components/ui/dropzone'; 
-import { Separator } from "@radix-ui/react-context-menu";
 
 //PANG TESTING KO LANG NG UI ng mga kung ano anong page
 export default function ForgotPassword() {
@@ -63,33 +61,6 @@ export default function ForgotPassword() {
                                  ))}
                              </div>
                          </DialogContent>
-                     </Dialog>
-                     <Dialog>
-                        <DialogTrigger>
-                            <Button variant="outline" size="icon">
-                                <GearIcon className="h-4 w-4" />
-                            </Button>
-                        </DialogTrigger>
-                            <DialogContent className ="bg-[#262627] rounded-[24px]">
-
-                            <p className="text-center text-white font-mono hover:underline">
-                                Manage Your Account<br/>
-                            </p>
-                            <Separator className="bg-[#565656] h-0.5" />
-
-                            <p className="text-center text-white font-mono hover:underline">
-                                Terms and Services<br/>
-                            </p>
-                            <Separator className="bg-[#565656] h-0.5" />
-
-                            <p className="text-center text-white font-mono hover:underline">
-                                Help<br/>
-                            </p>
-                            <Separator className="bg-[#565656] h-0.5" />
-
-                            <Link to="/login" className="text-center text-white font-mono hover:underline">Logout</Link>
-
-                            </DialogContent>
                      </Dialog>
                  </div>
              </div>
