@@ -6,12 +6,12 @@ import Navbar from "./components/Navbar";
 import ForgotPassword  from "./pages/forgot-password/forgot-password";
 
 function App() {
-	return (
-		<Router>
-			<Routes>
-				<Route path="/login" element={<LoginPage />} />
-				<Route path="/register" element={<SignUpPage />} />
-				<Route path="/" element={<Navbar />} />
+    return (
+        <Router>
+            <Routes>
+                {/* <Route path="/" element={<HomePage />} />  */}
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<SignUpPage />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
 			</Routes>
 		</Router>
