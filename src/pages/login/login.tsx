@@ -1,21 +1,17 @@
-/* import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-  } from "../../@/components/ui/dialog" */
-  
-/* import {useState} from 'react';
-import { Link } from "react-router-dom"; */
+
+import ForgotPassword from "../../components/ForgotPasswordModal";
+import { Link } from "react-router-dom";
 import { Input } from "../../@/components/ui/input";
 import { Label } from "../../@/components/ui/label";
 import { Button } from "../../@/components/ui//button";
 import { Checkbox } from "../../@/components/ui/checkbox";
-// import ForgotPasswordDialog from "../../components/ForgotPasswordModal";
+
 
 
 export default function LoginPage() {
     return (
        <>
+       <div>
         <div className="bg-signupBg grid place-items-center h-screen no-repeat bg-cover">
             <div className="w-full h-screen flex justify-center items-center bg-black bg-opacity-50">
                 <div className="flex flex-col justify-center items-center space-y-6 bg-white min-w-[450px] min-h-[450px] rounded-[24px] p-8 shadow-lg shadow-black">
@@ -53,10 +49,18 @@ export default function LoginPage() {
 							</Button>
 						</form>
 
-                        
+                            <div className="flex flex-col items-center w-full space-y-2">
+                                <ForgotPassword/>
+                                <Link to="/signup" className="text-sm text-[#FFAF8A] underline">Create a New Account</Link>
+                            </div>
+
+                            <Link to="/home" className="text-sm text-[#FFAF8A] underline">Log in as Guest</Link>
+                        </div>
                 </div>
             </div>
         </div>
+
+
        </>
     );
 }
