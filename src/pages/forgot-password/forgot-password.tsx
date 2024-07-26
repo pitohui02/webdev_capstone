@@ -4,12 +4,12 @@ import {
     DialogTrigger,
   } from "../../@/components/ui/dialog"
 import React,{useState} from 'react';
-import { useDropzone } from 'react-dropzone';
+// import { useDropzone } from 'react-dropzone';
 import { Link } from "react-router-dom";
 import { Input } from "../../@/components/ui/input";
 import { Label } from "../../@/components/ui/label";
 import { Button } from "../../@/components/ui//button";
-import { Checkbox } from "../../@/components/ui/checkbox";
+// import { Checkbox } from "../../@/components/ui/checkbox";
 import { GearIcon } from "@radix-ui/react-icons"
 
 import Dropzone from '../../@/components/ui/dropzone'; 
