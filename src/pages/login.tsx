@@ -1,10 +1,10 @@
 
-import ForgotPassword from "../../components/ForgotPasswordModal";
+import ForgotPassword from "../components/ForgotPasswordModal";
 import { Link } from "react-router-dom";
-import { Input } from "../../@/components/ui/input";
-import { Label } from "../../@/components/ui/label";
-import { Button } from "../../@/components/ui//button";
-import { Checkbox } from "../../@/components/ui/checkbox";
+import { Input } from "../@/components/ui/input";
+import { Label } from "../@/components/ui/label";
+import { Button } from "../@/components/ui/button";
+import { Checkbox } from "../@/components/ui/checkbox";
 
 
 
@@ -51,7 +51,7 @@ export default function LoginPage() {
 
                             <div className="flex flex-col items-center w-full space-y-2">
                                 <ForgotPassword/>
-                                <Link to="/signup" className="text-sm text-[#FFAF8A] underline">Create a New Account</Link>
+                                <Link to="/register" className="text-sm text-[#FFAF8A] underline">Create a New Account</Link>
                             </div>
 
                             <Link to="/home" className="text-sm text-[#FFAF8A] underline">Log in as Guest</Link>

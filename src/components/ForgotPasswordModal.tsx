@@ -1,9 +1,11 @@
-import { Dialog, DialogContent, DialogTrigger } from "../@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../@/components/ui/dialog";
 import {Input} from "../@/components/ui/input";
 import {Label} from "../@/components/ui/label";
 import { Button } from "../@/components/ui/button";
+import VerifiedEmailModal from "./VerifiedEmailModal";
 
 export default function ForgotPassword() {
+
     return(
         <>
             <Dialog>
@@ -13,8 +15,13 @@ export default function ForgotPassword() {
 
                 <DialogContent className="w-[500px]">
                     <div className="flex flex-col items-center space-y-2 mb-5">
-                        <h1 className="text-4xl font-bold">Forgot Password</h1>
-                        <p>You can reset your password by your email</p>
+                        <DialogTitle>
+                            <h1 className="text-4xl font-bold">Forgot Password</h1>
+                        </DialogTitle>
+
+                        <DialogDescription>
+                            <p>You can reset your password by your email</p>
+                        </DialogDescription>
                     </div>
 
                     <div className="flex flex-row items-end space-x-5 justify-center">
@@ -23,12 +30,7 @@ export default function ForgotPassword() {
                             <Input className="w-64"id="FPEmail"type="email" placeholder="Email" />
                         </div>
 
-                    <Button 
-                    variant="outline"
-					className="bg-[#FFAF8A] w-[200px]rounded-lg hover:bg-[#F88D5B] duration-500">
-            
-                    Verification Code
-                    </Button>
+                    <VerifiedEmailModal/>
 
                     </div>
                 </DialogContent>
@@ -36,3 +38,4 @@ export default function ForgotPassword() {
         </>
     );
 }
+
