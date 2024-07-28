@@ -43,8 +43,7 @@ export default function LoginPage() {
 
 							<Button
 								variant="outline"
-								className="bg-[#FFAF8A] min-w-[300px] rounded-lg hover:bg-[#F88D5B] duration-500 "
-							>
+								className="bg-[#FFAF8A] min-w-[300px] rounded-lg hover:bg-[#F88D5B] duration-500 ">
 								Login
 							</Button>
 						</form>

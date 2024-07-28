@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../@/components/ui/dialog";
 import {Input} from "../@/components/ui/input";
 import {Label} from "../@/components/ui/label";
-import { Button } from "../@/components/ui/button";
+
 import VerifiedEmailModal from "./VerifiedEmailModal";
 
 export default function ForgotPassword() {
@@ -25,7 +25,7 @@ export default function ForgotPassword() {
                     </div>
 
                     <div className="flex flex-row items-end space-x-5 justify-center">
-                        <div  className="flex flex-col space-y-1.5">
+                        <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="FPEmail" className="text-xs">Enter your email address to receive your <br/> verification code</Label>
                             <Input className="w-64"id="FPEmail"type="email" placeholder="Email" />
                         </div>
