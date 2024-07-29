@@ -8,6 +8,6 @@ export default defineConfig({
 	out: "./supabase/migrations",
 	dialect: "postgresql",
 	dbCredentials: {
-		url: process.env.DATABASE_URL!,
+		url: import.meta.env.VITE_DATABASE_URL!,
 	},
 });

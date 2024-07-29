@@ -17,8 +17,8 @@ export default function Root() {
 					path="/illustrations"
 					element={<div>This is the illustrations page</div>}
 				/>
-				<Route path ="/register" element={<SignUpPage />} />
-				<Route path ="/login" element={<LoginPage />} />
+				<Route path="/register" element={<SignUpPage />} />
+				<Route path="/login" element={<LoginPage />} />
 			</Routes>
 		</>
 	);
