@@ -24,6 +24,9 @@ const FormSchema = z
 			.min(1, "Password is required")
 			.min(8, "Password must have atleast 8 characters"),
 		confirmPassword: z.string(),
+		tac: z.boolean().refine(value => value === true, {
+			message: "Must agree to terms and conditions",
+		}),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
 		message: "Passwords don't match",
@@ -42,6 +45,8 @@ export default function SignUpPage() {
 			email: "",
 			password: "",
 			confirmPassword: "",
+			tac: false,
+
 		},
 	});
 	return (
@@ -50,9 +55,12 @@ export default function SignUpPage() {
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="space-y-8 bg-slate-100 py-4 px-6 rounded-sm shadow-sm min-w-80"
+						className="flex flex-col space-y-3 bg-slate-100 py-4 px-6 rounded-lg shadow-sm min-w-80"
 					>
-						<h1 className="font-bold text-xl">Log In</h1>
+						<div className="flex flex-col items-center">
+							<h1 className="font-bold text-xl">OnlyImages</h1>
+							<p className="font-bold text-l">SIGN UP</p>
+						</div>
 						<FormField
 							control={form.control}
 							name="username"
@@ -60,7 +68,7 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Username</FormLabel>
 									<FormControl>
-										<Input placeholder="Username..." />
+										<Input placeholder="Username" className="rounded-lg"/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -73,7 +81,7 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Email</FormLabel>
 									<FormControl>
-										<Input placeholder="johndoe@email.com..." type="email" />
+										<Input placeholder="johndoe@email.com" type="email" className="rounded-lg"/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -86,7 +94,7 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<Input placeholder="" type="password" />
+										<Input placeholder="" type="password" className="rounded-lg"/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -99,15 +107,43 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Confirm Password</FormLabel>
 									<FormControl>
-										<Input placeholder="" type="password" />
+										<Input placeholder="" type="password" className="rounded-lg"/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
-						<Button type="submit">Submit</Button>
+
+						<FormField
+						control={form.control}
+						name="tac"
+						render={({ field }) => (
+							<FormItem className="flex flex-row space-x-2 items-end justify-center">
+								<FormControl>
+									<Checkbox
+									checked={field.value}
+									onCheckedChange={field.onChange} />
+								</FormControl>
+
+								<FormLabel className="text-xs">
+									I agree to Terms and Conditions
+								</FormLabel>
+								<FormMessage className="text-xs"/>
+							</FormItem>
+							
+						)} />
+						
+						<div className="flex flex-col items-center space-y-2">
+							<Button type="submit" variant="outline" className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full">Register</Button>
+
+							<Link to="/login" className="text-sm text-[#FFAF8A] underline justify-self-center">
+								Login
+							</Link>
+						</div>
 					</form>
 				</Form>
+				
+				
 				
 			</div>
 		</>
