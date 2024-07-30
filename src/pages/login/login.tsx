@@ -43,6 +43,7 @@ export default function LoginPage() {
 		},
 	});
 
+
 	return (
 		<>
 			<div className="bg-signupBg grid place-items-center h-screen no-repeat bg-cover">
@@ -102,9 +103,7 @@ export default function LoginPage() {
 						)} />
 
 						<div className="flex flex-col items-center space-y-3">
-							<Button type="submit" variant="outline" className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full">Login</Button>
-
-							
+							<Button type="submit" variant="outline" className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full">L</Button>
 
 							<Link to="/register" className="text-sm text-[#FFAF8A] underline">
 								Create a New Account
@@ -114,6 +113,7 @@ export default function LoginPage() {
 								Log in as Guest
 							</Link>
 						</div>
+
 					</form>
 				</Form>
 			</div>
