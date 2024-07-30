@@ -103,7 +103,7 @@ export default function LoginPage() {
 						)} />
 
 						<div className="flex flex-col items-center space-y-3">
-							<Button type="submit" variant="outline" className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full">L</Button>
+							<Button type="submit" variant="outline" className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full">Login</Button>
 
 							<Link to="/register" className="text-sm text-[#FFAF8A] underline">
 								Create a New Account
