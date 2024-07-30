@@ -4,6 +4,7 @@ import NavMenu from "../components/NavMenu";
 import HomePage from "../pages/Home/HomePage";
 import SignUpPage from "../pages/register/register";
 import LoginPage from "../pages/login/login";
+import ProfilePage from "../pages/profile/profile";
 
 export default function Root() {
 	return (

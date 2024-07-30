@@ -16,7 +16,7 @@ export default function NavMenu() {
 					<NavigationMenuItem>
 						<NavLink
 							to="/"
-							className="hover:bg-slate-300 p-2 rounded-sm hover:text-yellow-300 duration-300"
+							className="hover:bg-slate-300 p-2 rounded-sm hover:text-[#FFAF8A] duration-300"
 						>
 							Home
 						</NavLink>
@@ -24,7 +24,7 @@ export default function NavMenu() {
 					<NavigationMenuItem>
 						<NavLink
 							to="/photos"
-							className="hover:bg-slate-300 p-2 rounded-sm hover:text-yellow-300 duration-300"
+							className="hover:bg-slate-300 p-2 rounded-sm hover:text-[#FFAF8A] duration-300"
 						>
 							Photos
 						</NavLink>
@@ -32,7 +32,7 @@ export default function NavMenu() {
 					<NavigationMenuItem>
 						<NavLink
 							to="/illustrations"
-							className="hover:bg-slate-300 p-2 rounded-sm hover:text-yellow-300 duration-300"
+							className="hover:bg-slate-300 p-2 rounded-sm hover:text-[#FFAF8A] duration-300"
 						>
 							Illustrations
 						</NavLink>
