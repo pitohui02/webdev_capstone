@@ -1,5 +1,5 @@
 {
-  "id": "d99986f0-da1d-4e8f-ba17-62f8d17c662e",
+  "id": "c2375713-1d3a-4e2c-97af-9c39a22a7840",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,19 +10,26 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "uuid",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
-        "photo": {
-          "name": "photo",
+        "imageUrl": {
+          "name": "imageUrl",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "integer",
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "authorId": {
+          "name": "authorId",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": true
         },
@@ -42,12 +49,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "posts_table_user_id_users_table_id_fk": {
-          "name": "posts_table_user_id_users_table_id_fk",
+        "posts_table_authorId_users_table_id_fk": {
+          "name": "posts_table_authorId_users_table_id_fk",
           "tableFrom": "posts_table",
           "tableTo": "users_table",
           "columnsFrom": [
-            "user_id"
+            "authorId"
           ],
           "columnsTo": [
             "id"
@@ -65,12 +72,13 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "uuid",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
-        "name": {
-          "name": "name",
+        "username": {
+          "name": "username",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -92,11 +100,11 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "users_table_name_unique": {
-          "name": "users_table_name_unique",
+        "users_table_username_unique": {
+          "name": "users_table_username_unique",
           "nullsNotDistinct": false,
           "columns": [
-            "name"
+            "username"
           ]
         },
         "users_table_email_unique": {

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Button } from "../../@/components/ui/button";
 import { Input } from "../../@/components/ui/input";
 import { Checkbox } from "../../@/components/ui/checkbox";
@@ -14,6 +13,10 @@ import {
 	FormLabel,
 	FormMessage,
 } from "../../@/components/ui/form";
+import { supabase } from "../../client";
+import { useToast } from "../../@/components/ui/use-toast";
+import { createUser } from "../../db/queries";
+import { hash } from "bcrypt";
 
 const FormSchema = z
 	.object({
@@ -34,10 +37,33 @@ const FormSchema = z
 	});
 
 const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-	console.log(values);
+	try {
+		createUser({
+			email: values.email,
+			username: values.username,
+			password: hash(values.password),
+		});
+
+		const { data, error } = await supabase.auth.signUp({
+			email: values.email,
+			password: values.password,
+			options: {
+				data: {
+					name: values.username,
+				},
+			},
+		});
+
+		if (error) {
+			console.error("Registration failed", error.message);
+		}
+	} catch (error) {
+		console.error("Something went wrong");
+	}
 };
 
 export default function SignUpPage() {
+	const { toast } = useToast();
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -49,6 +75,7 @@ export default function SignUpPage() {
 
 		},
 	});
+
 	return (
 		<>
 			<div className="bg-loginBg grid place-items-center h-screen no-repeat bg-cover">
