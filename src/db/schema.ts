@@ -1,16 +1,17 @@
-import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users_table", {
-	id: serial("id").primaryKey(),
-	name: text("name").notNull().unique(),
+	id: uuid("id").defaultRandom().primaryKey(),
+	username: text("username").notNull().unique(),
 	email: text("email").notNull().unique(),
-	password: text("password"),
+	password: text("password").notNull(),
 });
 
 export const postsTable = pgTable("posts_table", {
-	id: serial("id").primaryKey(),
-	photo: text("photo").notNull(),
-	userId: integer("user_id")
+	id: uuid("id").defaultRandom().primaryKey(),
+	imageUrl: text("imageUrl").notNull(),
+	description: text("description").notNull(),
+	authorId: uuid("authorId")
 		.notNull()
 		.references(() => usersTable.id, { onDelete: "cascade" }),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
