@@ -18,6 +18,7 @@ import { useToast } from "../../@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import ForgotPasswordModal from "../../components/ForgotPasswordModal";
 
 const FormSchema = z
 	.object({
@@ -193,8 +194,9 @@ export default function SignUpPage() {
 								) : (
 									"Register"
 								)}
-								Register
 							</Button>
+
+							<ForgotPasswordModal />
 
 							<Link
 								to="/login"
