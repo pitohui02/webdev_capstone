@@ -1,6 +1,5 @@
 import { Button } from "../../@/components/ui/button";
 import { Input } from "../../@/components/ui/input";
-import { Checkbox } from "../../@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,8 +14,7 @@ import {
 } from "../../@/components/ui/form";
 import { supabase } from "../../client";
 import { useToast } from "../../@/components/ui/use-toast";
-import { createUser } from "../../db/queries";
-import { hash } from "bcrypt";
+import { useNavigate } from "react-router-dom";
 
 const FormSchema = z
 	.object({
@@ -33,34 +31,9 @@ const FormSchema = z
 		path: ["confirm"],
 	});
 
-const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-	try {
-		createUser({
-			email: values.email,
-			username: values.username,
-			password: hash(values.password),
-		});
-
-		const { data, error } = await supabase.auth.signUp({
-			email: values.email,
-			password: values.password,
-			options: {
-				data: {
-					name: values.username,
-				},
-			},
-		});
-
-		if (error) {
-			console.error("Registration failed", error.message);
-		}
-	} catch (error) {
-		console.error("Something went wrong");
-	}
-};
-
 export default function SignUpPage() {
 	const { toast } = useToast();
+	const navigate = useNavigate();
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -71,6 +44,36 @@ export default function SignUpPage() {
 		},
 	});
 
+	const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+		try {
+			const { data, error } = await supabase.auth.signUp({
+				email: values.email,
+				password: values.password,
+				options: {
+					data: {
+						name: values.username,
+					},
+				},
+			});
+
+			if (error) {
+				toast({
+					title: "Error in registration",
+					variant: "destructive",
+				});
+			}
+
+			toast({
+				title: "Account created",
+				description: "Verify your email",
+			});
+
+			navigate("/login");
+		} catch (error) {
+			console.error("Something went wrong");
+		}
+	};
+
 	return (
 		<>
 			<div className="bg-loginBg grid place-items-center h-screen no-repeat bg-cover">
@@ -79,7 +82,7 @@ export default function SignUpPage() {
 						onSubmit={form.handleSubmit(onSubmit)}
 						className="space-y-8 bg-slate-100 py-4 px-6 rounded-sm shadow-sm min-w-80"
 					>
-						<h1 className="font-bold text-xl">Log In</h1>
+						<h1 className="font-bold text-xl"> Sign Up</h1>
 						<FormField
 							control={form.control}
 							name="username"
@@ -87,7 +90,7 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Username</FormLabel>
 									<FormControl>
-										<Input placeholder="Shadcn..." />
+										<Input placeholder="Shadcn..." {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -100,7 +103,11 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Email</FormLabel>
 									<FormControl>
-										<Input placeholder="johndoe@email.com..." type="email" />
+										<Input
+											placeholder="johndoe@email.com..."
+											type="email"
+											{...field}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -113,7 +120,7 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<Input placeholder="" type="password" />
+										<Input placeholder="" type="password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -126,7 +133,7 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Confirm Password</FormLabel>
 									<FormControl>
-										<Input placeholder="" type="password" />
+										<Input placeholder="" type="password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -135,82 +142,6 @@ export default function SignUpPage() {
 						<Button type="submit">Submit</Button>
 					</form>
 				</Form>
-				{/* <div className="w-full h-screen flex justify-center items-center bg-black bg-opacity-50">
-					<div className="flex flex-col justify-center items-center space-y-6 bg-white min-w-[450px] min-h-[450px] rounded-[24px] p-8 shadow-lg shadow-black">
-						<h1 className="uppercase text-[35px] text-center font-mono font-medium">
-							onlyimages
-						</h1>
-
-						<form className="flex flex-col space-y-4 w-fit">
-							<div className="flex-row justify-items-start">
-								<Label htmlFor="regUsername" className="text-lg">
-									Username
-								</Label>
-								<Input
-									id="regUsername"
-									placeholder="Username"
-									className="rounded-full min-w-[300px]"
-								/>
-							</div>
-
-							<div className="flex-row justify-items-start">
-								<Label htmlFor="regEmail" className="text-lg">
-									Email
-								</Label>
-								<Input
-									type="email"
-									id="regEmail"
-									placeholder="Email"
-									className="rounded-full min-w-[300px]"
-								/>
-							</div>
-
-							<div className="flex-row justify-items-start">
-								<Label htmlFor="regPW" className="text-lg">
-									Password
-								</Label>
-								<Input
-									id="regPW"
-									type="password"
-									placeholder="Password"
-									className="rounded-full min-w-[300px]"
-								/>
-							</div>
-
-							<div className="flex-row justify-items-start">
-								<Label htmlFor="regCPW" className="text-lg">
-									Confirm Password
-								</Label>
-								<Input
-									id="regCPW"
-									type="password"
-									placeholder="Confirm Password"
-									className="rounded-full min-w-[300px]"
-								/>
-							</div>
-
-							<div className="flex flex-row space-x-1.5 items-center">
-								<Checkbox id="tac" />
-								<Label htmlFor="tac">Accept Terms & Conditions</Label>
-							</div>
-
-							<Button
-								variant="outline"
-								className="bg-[#FFAF8A] min-w-[300px] rounded-lg hover:bg-[#F88D5B] duration-500 "
-                                onClick={onSubmit}
-							>
-								Register
-							</Button>
-						</form>
-
-						<div className="flex flex-row space-x-1 items-center mt-[20px]">
-							<p>Already have an account?</p>{" "}
-							<Link to="/login" className="text-sm text-[#FFAF8A] underline">
-								Login
-							</Link>
-						</div>
-					</div>
-				</div> */}
 			</div>
 		</>
 	);
