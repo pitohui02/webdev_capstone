@@ -1,5 +1,7 @@
 import { Button } from "../../@/components/ui/button";
 import { Input } from "../../@/components/ui/input";
+import { Link } from "react-router-dom";
+import { Checkbox } from "../../@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -97,7 +99,11 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Username</FormLabel>
 									<FormControl>
-										<Input placeholder="Username" className="rounded-lg" />
+										<Input
+											placeholder="Username"
+											className="rounded-lg"
+											{...field}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -110,6 +116,11 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Email</FormLabel>
 									<FormControl>
+										<Input
+											placeholder="johndoe@email.com..."
+											type="email"
+											{...field}
+										/>
 										<Input
 											placeholder="johndoe@email.com..."
 											type="email"
@@ -140,7 +151,7 @@ export default function SignUpPage() {
 								<FormItem>
 									<FormLabel>Confirm Password</FormLabel>
 									<FormControl>
-										<Input placeholder="" type="password" />
+										<Input placeholder="" type="password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
