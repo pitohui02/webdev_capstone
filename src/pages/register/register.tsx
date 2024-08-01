@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -17,6 +16,8 @@ import {
 import { supabase } from "../../client";
 import { useToast } from "../../@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const FormSchema = z
 	.object({
@@ -50,8 +51,8 @@ export default function SignUpPage() {
 		},
 	});
 
-	const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-		try {
+	const signUpMutation = useMutation({
+		mutationFn: async (values: z.infer<typeof FormSchema>) => {
 			const { data, error } = await supabase.auth.signUp({
 				email: values.email,
 				password: values.password,
@@ -61,23 +62,27 @@ export default function SignUpPage() {
 					},
 				},
 			});
-
-			if (error) {
-				toast({
-					title: "Error in registration",
-					variant: "destructive",
-				});
-			}
-
+			if (error) throw error;
+			return data;
+		},
+		onSuccess: () => {
 			toast({
-				title: "Account created",
+				title: "Account created!",
 				description: "Verify your email",
 			});
-
 			navigate("/login");
-		} catch (error) {
-			console.error("Something went wrong");
-		}
+		},
+		onError: (error) => {
+			toast({
+				title: "Error in registration",
+				description: error.message,
+				variant: "destructive",
+			});
+		},
+	});
+
+	const onSubmit = (values: z.infer<typeof FormSchema>) => {
+		signUpMutation.mutate(values);
 	};
 
 	return (
@@ -183,7 +188,16 @@ export default function SignUpPage() {
 								type="submit"
 								variant="outline"
 								className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full"
+								disabled={signUpMutation.isPending}
 							>
+								{signUpMutation.isPending ? (
+									<>
+										<ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+										Registering...
+									</>
+								) : (
+									"Register"
+								)}
 								Register
 							</Button>
 
