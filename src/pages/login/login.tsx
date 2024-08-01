@@ -17,6 +17,7 @@ import { useToast } from "../../@/components/ui/use-toast";
 import { supabase } from "../../client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import ForgotPasswordModal from "../../components/ForgotPasswordModal";
 
 const FormSchema = z.object({
 	email: z.string().min(1, "Email is required").max(100),
@@ -132,8 +133,7 @@ export default function LoginPage() {
 							)}
 						/>
 
-						<div className="flex flex-col items-center space-y-3">
-							<Button
+						<Button
 								type="submit"
 								variant="outline"
 								className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full"
@@ -148,6 +148,11 @@ export default function LoginPage() {
 									"Login"
 								)}
 							</Button>
+
+						<div className="flex flex-col items-center space-y-2">
+							
+
+							<ForgotPasswordModal />
 
 							<Link to="/register" className="text-sm text-[#FFAF8A] underline">
 								Create a New Account
