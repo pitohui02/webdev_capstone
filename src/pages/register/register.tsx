@@ -126,11 +126,6 @@ export default function SignUpPage() {
 											type="email"
 											{...field}
 										/>
-										<Input
-											placeholder="johndoe@email.com..."
-											type="email"
-											{...field}
-										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
