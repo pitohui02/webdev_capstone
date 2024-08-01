@@ -22,6 +22,7 @@ import {
 	FormLabel,
 	FormMessage,
 } from "../@/components/ui/form";
+import VerificationModal from "./VerificationModal";
 
 const FormSchema = z.object({
 	email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -90,10 +91,15 @@ export default function ForgotPasswordModal() {
 							>
 								Send Verification Code
 							</Button>
-						</form>
-					</Form>
-				</DialogContent>
-			</Dialog>
-		</>
-	);
+                            
+                            {/* For UI Purposes, please remove after integrating functionalities on forgotpassword modal -> change password modal */}
+                            <VerificationModal/>
+
+                        </form>
+                   </Form>
+
+                </DialogContent>
+            </Dialog>
+        </>
+    );
 }
