@@ -1,97 +1,103 @@
-import React, { useState } from 'react';
+import { Button } from "../@/components/ui/button"
 import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-} from "../@/components/ui/dialog";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../@/components/ui/dialog"
+
+
 import { Input } from "../@/components/ui/input";
-import { Label } from "../@/components/ui/label";
-import { Button } from "../@/components/ui/button";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "../@/components/ui/form";
 
-const ForgotPasswordDialog = () => {
-    // first state
-    const [FirstStateOpen, setFirstStateOpen] = useState(false);
-    // second state
-    const [SecondStateOpen, setSecondStateOpen] = useState(false);
+const FormSchema = z
+	.object({
+		email: z.string().min(1, "Email is required").email("Invalid email"),	
+	});
 
-    // open first state by setting it true
-    const handleOpenFirstState = () => setFirstStateOpen(true);
-    // clove first state by setting it false
-    const handleCloseFirstState = () => setFirstStateOpen(false);
-    // on click function to close first state and open second state
-    const handleOpenSecondState = () => {
-        handleCloseFirstState; // Close the first dialog
-        setSecondStateOpen(true);
-    };
-    // close second state by setting it to false
-    const handleCloseSecondState = () => {
-        setSecondStateOpen(false);
-        setFirstStateOpen(false); 
-    }
-
-    return (
-        <div>
-			{/* Forgot password first on state */}
-            <Dialog open={FirstStateOpen} onOpenChange={setFirstStateOpen}>
-            <DialogTrigger onClick ={handleOpenFirstState} className="text-sm">Forgot Password</DialogTrigger>
-            <DialogContent className="flex flex-col text-center justify-start items-center bg-white min-w-[450px] rounded-[24px] p-8 shadow-lg shadow-black">
-                <div>
-                    <h1 className=" text-[35px] text-center font-mono font-bold">Forgot your password?</h1>
-                    <h2 className ="text-lg">You can reset your password with your email</h2>
-                </div>
-                <form className="flex flex-col space-y-4 w-fit">
-                    <div className="flex flex-col justify-start items-start">
-                        <Label className= "text-lg ml-5">Email</Label>
-                    </div>
-                    <div className="flex flex-row justify-center items-center">
-                        <Input id="loginUsername" placeholder="Email" className="rounded-full min-w-[200px] ml-4"/>
-                        {/* //Verification on click 2nd state*/}
-                        <Dialog open={SecondStateOpen} onOpenChange={setSecondStateOpen}>
-                            <DialogTrigger className="bg-[#FFAF8A] rounded-lg hover:bg-[#F88D5B] duration-500 ml-5 mr-4 min-w-[180px] min-h-[36px] font-medium" 
-                                onClick = {handleOpenSecondState}>
-                                Send Verification Code
-                            </DialogTrigger>
-                                <DialogContent className="flex flex-col text-center justify-start items-center  bg-white min-w-[450px] rounded-[24px] p-8 shadow-lg shadow-black">
-                                    <div>
-                                        <h1 className=" text-[35px] text-center font-mono font-bold">Forgot your password?</h1>
-                                        <h2 className ="text-lg">Enter your new password</h2>
-                                    </div>
-                                    <div className = "space-y-6">
-                                        <div className = "flex flex-row space">    
-                                            <form className="flex flex-col space-y-2 w-fit mr-2">
-                                                <div className="flex flex-col justify-start items-start">
-                                                    <Label className= "text-lg">New Password</Label>
-                                                <div className="justify-center items-center">
-                                                    <Input id="loginUsername" placeholder="Email" className="rounded-full min-w-[200px]"/>
-                                                </div>
-                                                </div>
-                                            </form>
-
-                                            <form className="flex flex-col space-y-2 w-fit ml-2">
-                                                <div className="flex flex-col justify-start items-start">
-                                                    <Label className= "text-lg">Confirm Password</Label>
-                                                    <div className="justify-center items-center">
-                                                        <Input id="loginUsername" placeholder="Email" className="rounded-full min-w-[200px]"/>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                    </div>
-                                    <div className="flex flex-col items-center ">
-                                        <Button variant="outline" className="bg-[#FFAF8A] rounded-lg hover:bg-[#F88D5B] duration-500 min-w-[400px]" 
-                                        onClick ={handleCloseSecondState}>
-                                        Change Password
-                                        </Button>
-                                    </div>
-                                    </div>
-                                </DialogContent>
-                        </Dialog>
-                    </div>
-                </form>
-            </DialogContent>
-            </Dialog>
-        </div>
-        
-    );
+const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+	console.log(values);
 };
 
-export default ForgotPasswordDialog;
+
+
+export default function ForgotPasswordModal() {
+
+    const form = useForm<z.infer<typeof FormSchema>>({
+		resolver: zodResolver(FormSchema),
+		defaultValues: {
+			email: "",
+
+		},
+	});
+
+    return(
+        <>
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Button variant="ghost" className="text-sm">Forgot Password</Button>
+                </DialogTrigger>
+
+                 <DialogContent className="sm:max-w-[550px]">
+                    <DialogHeader className="flex flex-col items-center">
+                        <DialogTitle>Forgot Password</DialogTitle>
+
+                        <DialogDescription>
+                       You can reset your password by your email.
+                        </DialogDescription>
+                    </DialogHeader>
+
+                   <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-row space-x-2 items-end justify-center">
+                            
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <div className="flex flex-row space-x-2 items-end">
+                                        <FormLabel className="text-sm">Email</FormLabel> <FormMessage/>
+                                        </div>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="johndoe@email.com..."
+                                                type="email"
+                                                className="min-w-[250px]"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        
+                                    </FormItem>
+                                )}
+						    />
+
+                            <Button
+								type="submit"
+								variant="outline"
+								className="bg-[#FFAF8A] hover:bg-[#ffa880] w-">
+							
+                                Send Verification Code
+							</Button>
+
+                        </form>
+                   </Form>
+
+                </DialogContent>
+            </Dialog>
+        </>
+    );
+}

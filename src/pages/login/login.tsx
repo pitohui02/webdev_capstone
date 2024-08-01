@@ -17,6 +17,8 @@ import {
 	FormMessage,
 } from "../../@/components/ui/form";
 
+import ForgotPasswordModal from "../../components/ForgotPasswordModal";
+
 
 const FormSchema = z
 	.object({
@@ -102,8 +104,11 @@ export default function LoginPage() {
 							
 						)} />
 
-						<div className="flex flex-col items-center space-y-3">
-							<Button type="submit" variant="outline" className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full">Login</Button>
+						<Button type="submit" variant="outline" className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full">Login</Button>	
+
+						<div className="flex flex-col items-center space-y-2">
+							
+							<ForgotPasswordModal/>
 
 							<Link to="/register" className="text-sm text-[#FFAF8A] underline">
 								Create a New Account
