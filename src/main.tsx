@@ -8,6 +8,7 @@ import LoginPage from "./pages/login/login.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SignUpPage from "./pages/register/register.tsx";
 import { Toaster } from "./@/components/ui/toaster.tsx";
+import ForgotPasswordPage from "./pages/forgot-password/ForgotPasswordPage.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
 	{
 		path: "/register",
 		element: <SignUpPage />,
+		errorElement: <ErrorPage />,
+	},
+	{
+		path: "/reset-password",
+		element: <ForgotPasswordPage />,
 		errorElement: <ErrorPage />,
 	},
 ]);
