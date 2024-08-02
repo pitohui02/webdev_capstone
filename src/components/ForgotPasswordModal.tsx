@@ -22,22 +22,50 @@ import {
 	FormLabel,
 	FormMessage,
 } from "../@/components/ui/form";
+import { useMutation } from "@tanstack/react-query";
+import { supabase } from "../client";
+import { useToast } from "../@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const FormSchema = z.object({
 	email: z.string().min(1, "Email is required").email("Invalid email"),
 });
 
-const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-	console.log(values);
-};
-
 export default function ForgotPasswordModal() {
+	const { toast } = useToast();
+	const navigate = useNavigate();
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
 			email: "",
 		},
 	});
+
+	const mutation = useMutation({
+		mutationFn: async (values: z.infer<typeof FormSchema>) => {
+			const { data, error } = await supabase.auth.resetPasswordForEmail(
+				values.email,
+			);
+
+			if (error) throw error;
+			return data;
+		},
+		onSuccess: () => {
+			navigate("/reset-password");
+		},
+		onError: () => {
+			toast({
+				title: "Error in sending email",
+				description: "Email has not been sent",
+				variant: "destructive",
+			});
+		},
+	});
+
+	const onSubmit = (values: z.infer<typeof FormSchema>) => {
+		mutation.mutate(values);
+	};
 
 	return (
 		<>
@@ -87,8 +115,16 @@ export default function ForgotPasswordModal() {
 								type="submit"
 								variant="outline"
 								className="bg-[#FFAF8A] hover:bg-[#ffa880] w-"
+								disabled={mutation.isPending}
 							>
-								Send Verification Code
+								{mutation.isPending ? (
+									<>
+										<ReloadIcon className="mr-2 h-4 w-4 animate-pulse" />
+										Sending...
+									</>
+								) : (
+									"Send Verification Code"
+								)}
 							</Button>
 						</form>
 					</Form>
