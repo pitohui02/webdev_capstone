@@ -133,8 +133,7 @@ export default function LoginPage() {
 							)}
 						/>
 
-						<div className="flex flex-col items-center space-y-3">
-							<Button
+						<Button
 								type="submit"
 								variant="outline"
 								className="bg-[#FFAF8A] hover:bg-[#ffa880] w-full"
@@ -150,6 +149,12 @@ export default function LoginPage() {
 								)}
 							</Button>
 
+<<<<<<< HEAD
+=======
+						<div className="flex flex-col items-center space-y-2">
+							
+
+>>>>>>> 8b06fe7c8fbae195bd51e45dbc164666b8d75387
 							<ForgotPasswordModal />
 
 							<Link to="/register" className="text-sm text-[#FFAF8A] underline">

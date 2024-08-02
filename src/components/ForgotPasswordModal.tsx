@@ -126,6 +126,9 @@ export default function ForgotPasswordModal() {
 									"Send Verification Code"
 								)}
 							</Button>
+
+							{/* For UI Purposes, please remove after integrating functionalities on forgotpassword modal -> change password modal */}
+							<VerificationModal />
 						</form>
 					</Form>
 				</DialogContent>
