@@ -4,6 +4,7 @@ import NavMenu from "../components/NavMenu";
 import HomePage from "../pages/Home/HomePage";
 import ProfilePage from "../pages/profile/profile";
 import { ImageUpload } from "../components/FileUpload";
+import ImageGallery from "../components/ImageGallery";
 
 export default function Root() {
 	const location = useLocation();
@@ -17,11 +18,11 @@ export default function Root() {
 			<Navbar />
 			{shouldShowNavMenu && <NavMenu />}
 			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/photos" element={<div>This is the photo page</div>} />
+				<Route path="/" element={<ImageGallery />} />
+				<Route path="/photos" element={<ImageGallery type={"photos"} />} />
 				<Route
 					path="/illustrations"
-					element={<div>This is the illustrations page</div>}
+					element={<ImageGallery type={"illustrations"} />}
 				/>
 				<Route path="/upload" element={<ImageUpload />} />
 				<Route path="/profile/:userId" element={<ProfilePage />} />

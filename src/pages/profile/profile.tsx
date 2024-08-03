@@ -42,16 +42,6 @@ export default function ProfilePage() {
 						) : (
 							<Skeleton className="h-1 w-4 rounded-md" />
 						)}
-						<div className="flex space-x-4 mb-4">
-							<div className="text-center">
-								<h3 className="text-lg font-bold">Uploads</h3>
-								<p>5</p>
-							</div>
-							<div className="text-center">
-								<h3 className="text-lg font-bold">Followers</h3>
-								<p>1.5K</p>
-							</div>
-						</div>
 					</div>
 				</div>
 				<div className="flex items-center space-x-2">

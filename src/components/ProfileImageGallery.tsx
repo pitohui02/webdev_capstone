@@ -42,6 +42,11 @@ export function ProfileImageGallery() {
 				.remove([`${user.user.id}/${imageName}`]);
 
 			if (error) throw error;
+
+			await supabase
+				.from("images")
+				.delete()
+				.eq("file_path", `${user.user.id}/${imageName}`);
 		},
 		onSuccess: () => {
 			queryCient.invalidateQueries({ queryKey: ["userImages"] });

@@ -42,16 +42,25 @@ export function ImageUpload() {
 	});
 
 	const uploadFile = async (values: z.infer<typeof formSchema>) => {
+		const code = uuidv4();
 		const file = values.file[0];
 		const {
 			data: { user },
 		} = await supabase.auth.getUser();
 		const { data, error } = await supabase.storage
 			.from("images")
-			.upload(`${user?.id}/${uuidv4()}`, file, {
+			.upload(`${user?.id}/${code}`, file, {
 				contentType: values.imageType,
 				upsert: false,
 			});
+
+		await supabase.from("images").insert([
+			{
+				file_path: `${user?.id}/${code}`,
+				type: values.imageType,
+				user_id: user?.id,
+			},
+		]);
 
 		if (error) throw error;
 		return { ...data, type: values.imageType };
