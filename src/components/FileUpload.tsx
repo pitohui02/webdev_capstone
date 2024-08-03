@@ -23,6 +23,7 @@ import {
 } from "../@/components/ui/select";
 import { supabase } from "../client";
 import { v4 as uuidv4 } from "uuid";
+import { useToast } from "../@/components/ui/use-toast";
 
 const formSchema = z.object({
 	imageType: z.string({
@@ -33,6 +34,7 @@ const formSchema = z.object({
 
 export function ImageUpload() {
 	const [preview, setPreview] = useState("");
+	const { toast } = useToast();
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -68,8 +70,11 @@ export function ImageUpload() {
 
 	const mutation = useMutation({
 		mutationFn: uploadFile,
-		onSuccess: (data) => {
-			console.log("File uploaded successfully", data);
+		onSuccess: () => {
+			toast({
+				title: "File uploaded successfully!",
+				description: "Your file has been uploaded.",
+			});
 			form.reset();
 			setPreview("");
 			// Handle success (e.g., display the uploaded image)
@@ -121,7 +126,6 @@ export function ImageUpload() {
 								<SelectContent>
 									<SelectItem value="photos">Photos</SelectItem>
 									<SelectItem value="illustrations">Illustrations</SelectItem>
-									<SelectItem value="vectors">Vectors</SelectItem>
 								</SelectContent>
 							</Select>
 							<FormDescription>

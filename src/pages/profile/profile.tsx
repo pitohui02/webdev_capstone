@@ -44,16 +44,7 @@ export default function ProfilePage() {
 						)}
 					</div>
 				</div>
-				<div className="flex items-center space-x-2">
-					<Button
-						variant="outline"
-						size="sm"
-						className="bg-[#FFAF8A] rounded-lg hover:bg-[#F88D5B] duration-500 "
-					>
-						Edit Profile
-					</Button>
-					<SettingsModal />
-				</div>
+				<SettingsModal />
 			</div>
 			<Separator className="my-4 bg-gray-300" />
 			<div className="grid grid-cols-3 gap-2 w-fit">{}</div>
