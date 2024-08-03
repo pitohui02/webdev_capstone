@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "../@/components/ui/button";
-import { toast } from "sonner";
 import { useToast } from "../@/components/ui/use-toast";
 
 async function getCurrentUser() {
@@ -64,9 +63,14 @@ export default function Navbar() {
 						>
 							Upload
 						</Link>
-						<span className="text-slate-200 self-center">
-							Hello, {data.user.user_metadata.name || data.user.email}
-						</span>
+						<Link
+							to={`/profile/${data.user.id}`}
+							className="flex justify-center"
+						>
+							<span className="text-slate-200 self-center">
+								Hello, {data.user.user_metadata.name || data.user.email}
+							</span>
+						</Link>
 						<Button variant={"destructive"} onClick={handleLogout}>
 							Logout
 						</Button>
