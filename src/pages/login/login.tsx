@@ -87,7 +87,7 @@ export default function LoginPage() {
 									<FormLabel>Username</FormLabel>
 									<FormControl>
 										<Input
-											placeholder="Enter use email..."
+											placeholder="Username"
 											className="rounded-lg"
 											{...field}
 										/>
