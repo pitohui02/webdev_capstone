@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
@@ -33,7 +33,6 @@ const formSchema = z.object({
 });
 
 export function ImageUpload() {
-	const [preview, setPreview] = useState("");
 	const { toast } = useToast();
 	const form = useForm({
 		resolver: zodResolver(formSchema),
@@ -76,7 +75,6 @@ export function ImageUpload() {
 				description: "Your file has been uploaded.",
 			});
 			form.reset();
-			setPreview("");
 			// Handle success (e.g., display the uploaded image)
 		},
 		onError: (error) => {
@@ -91,8 +89,6 @@ export function ImageUpload() {
 
 			const file = acceptedFiles[0];
 			const objectUrl = URL.createObjectURL(file);
-
-			setPreview(objectUrl);
 
 			return () => URL.revokeObjectURL(objectUrl);
 		},

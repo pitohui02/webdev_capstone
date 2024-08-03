@@ -1,9 +1,6 @@
-import React from "react";
-import { Button } from "../../@/components/ui//button";
 import { Avatar } from "../../@/components/ui//avatar";
 import { AvatarImage } from "../../@/components/ui//avatar";
 import { AvatarFallback } from "../../@/components/ui//avatar";
-import { Card } from "../../@/components/ui//card";
 
 import { Separator } from "../../@/components/ui/separator";
 import SettingsModal from "../../components/SettingsModal";
@@ -24,6 +21,8 @@ export default function ProfilePage() {
 		queryKey: ["currentUser"],
 		queryFn: getCurrentUser,
 	});
+
+	if (isLoading) return <p>Loading...</p>;
 
 	return (
 		<div className="max-w-4xl mx-auto p-4">

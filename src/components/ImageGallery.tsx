@@ -1,6 +1,6 @@
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../client";
-import { Card, CardDescription } from "../@/components/ui/card";
+import { Card } from "../@/components/ui/card";
 import { Button } from "../@/components/ui/button";
 import { DownloadIcon } from "@radix-ui/react-icons";
 
@@ -13,18 +13,8 @@ async function getCurrentUser() {
 
 	return data;
 }
-function useAuthorName(userId: string) {
-	return useQuery({
-		queryKey: ["author", userId],
-		queryFn: () => identifyAuthor(userId),
-	});
-}
 
 function ImageCard({ image }) {
-	const { data: authorName, isLoading: isAuthorLoading } = useAuthorName(
-		image.user_id,
-	);
-
 	const handleDownload = async () => {
 		try {
 			const { data, error } = await supabase.storage
@@ -69,7 +59,6 @@ function ImageCard({ image }) {
 }
 
 export default function ImageGallery({ type = "" }) {
-	const queryClient = useQueryClient();
 	const { data, isLoading } = useQuery({
 		queryKey: ["allImages"],
 		queryFn: async () => {

@@ -84,10 +84,10 @@ export default function LoginPage() {
 							name="email"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Username</FormLabel>
+									<FormLabel>Email</FormLabel>
 									<FormControl>
 										<Input
-											placeholder="Username"
+											placeholder="Enter email..."
 											className="rounded-lg"
 											{...field}
 										/>

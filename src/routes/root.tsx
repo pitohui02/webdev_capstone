@@ -1,7 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import NavMenu from "../components/NavMenu";
-import HomePage from "../pages/Home/HomePage";
 import ProfilePage from "../pages/profile/profile";
 import { ImageUpload } from "../components/FileUpload";
 import ImageGallery from "../components/ImageGallery";
